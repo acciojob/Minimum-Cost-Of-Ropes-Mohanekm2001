@@ -1,24 +1,21 @@
-function connectRopes(ropeLengths) {
-  // Initialize total cost to 0
-  let totalCost = 0;
+// This file is not to be modified. Please ignore this.
+// We will understand all of this later in the course.
+// DO NOT MODIFY THIS FILE
 
-  // Keep connecting ropes until only one rope remains
-  while (ropeLengths.length > 1) {
-    // Sort the ropes in increasing order of length
-    ropeLengths.sort((a, b) => a - b);
+const express = require('express');
+const path = require('path');
 
-    // Get the two smallest ropes
-    const min1 = ropeLengths.shift();
-    const min2 = ropeLengths.shift();
+const app = express();
 
-    // Connect the two ropes and add the cost to the total cost
-    const cost = min1 + min2;
-    totalCost += cost;
+app.use(express.static(__dirname))
 
-    // Add the connected rope back to the array
-    ropeLengths.push(cost);
-  }
-
-  // Return the total cost
-  return totalCost;
-}
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/main.html'));
+});
+//your code here
+app.post('/add', (req, res) => {
+  const {a,b} = req.body;
+  res.status(200).send(a+b);
+  // res.sendFile(path.join(__dirname + '/main.html'));
+});
+module.exports = app;
