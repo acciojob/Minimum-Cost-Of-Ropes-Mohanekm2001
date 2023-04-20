@@ -1,21 +1,22 @@
-// This file is not to be modified. Please ignore this.
-// We will understand all of this later in the course.
-// DO NOT MODIFY THIS FILE
-
-const express = require('express');
-const path = require('path');
-
-const app = express();
-
-app.use(express.static(__dirname))
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/main.html'));
-});
-//your code here
-app.post('/add', (req, res) => {
-  const {a,b} = req.body;
-  res.status(200).send(a+b);
-  // res.sendFile(path.join(__dirname + '/main.html'));
-});
-module.exports = app;
+function calculateMinCost() {
+  //your code here
+  let string = document.getElementById("rope-lengths").value
+	
+	let arr = string.split(",");
+	let finalValue =0;
+	while(arr.length > 1){
+		arr.sort((a,b) =>{return(a-b)});
+		let value = parseInt (arr.shift());
+		let value1 = parseInt(arr.shift());
+		let mainValue = value+value1;
+		finalValue = finalValue + mainValue;
+		arr.push(mainValue);
+		
+	}
+  let result = document.getElementById("result");
+	result.innerText = finalValue;
+	return finalValue;
+			
+}
+  
+  
