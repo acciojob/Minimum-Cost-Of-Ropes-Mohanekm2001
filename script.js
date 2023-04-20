@@ -1,17 +1,26 @@
-function calculateMinCost() {
-  //your code here
-var res = 0;
-	var cost = 0;
-	var inputArray = document.getElementById("rope-lengths").value;
+function minCostToFormRope(a) {
+  a.preventDefault();
+  var inputElement = document.querySelector("input").value;
+  var arr = inputElement.split(",");
+  arr.sort(function (a, b) {
+    return a - b;
+  });
 
-	inputArray = inputArray.split(',').map(Number);
-	console.log(inputArray);
-	for(let i = 0;i< inputArray.length -1;i+=0) {
-		if (inputArray.length == 0) break;
-		inputArray = inputArray.sort((a,b) => b-a);
-		res = inputArray.pop()+ inputArray.pop();
-		cost += res;
-		inputArray[inputArray.length] = res; }
+  // we need to access first two element
+  // add them & store in a variable res
 
-	document.getElementById("result").innerHTML = cost;
-	}
+  // add the res in array
+  // increment cost by res
+  var cost = 0;
+  while (arr.length > 1) {
+    var res = Number(arr[0]) + Number(arr[1]);
+    arr.push(res);
+    cost += res;
+	  arr.splice(0,2);
+    arr.sort(function (a, b) {
+      return a - b;
+    });
+  }
+
+  document.getElementById("result").textContent = cost;
+}
